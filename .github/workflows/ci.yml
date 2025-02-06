@@ -4,10 +4,10 @@ on:
   push:
     branches:
       - master
+      - gha
   pull_request:
     branches:
       - master
-      - gha
 
 jobs:
   build:
