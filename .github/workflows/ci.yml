@@ -29,14 +29,14 @@ jobs:
       - name: Install dependencies (Linux)
         if: matrix.os == 'ubuntu-latest'
         run: |
-          sudo add-apt-repository ppa:keithw/glfw3 -y
-          sudo apt-get update -q
-          sudo apt-get install libglfw3-dev libopenal-dev xorg-dev -y
+          sudo apt update -q
+          sudo apt install -y libglfw3-dev libopenal-dev xorg-dev
 
       - name: Install dependencies (macOS)
         if: matrix.os == 'macos-latest'
         run: |
           brew update
+          brew upgrade
           brew install glfw openal-soft
 
       - name: Install Go tools
