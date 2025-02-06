@@ -41,9 +41,9 @@ jobs:
 
       - name: Install Go tools
         run: |
-          go get github.com/golang/lint/golint
-          go get honnef.co/go/tools/cmd/megacheck
-          go get github.com/fzipp/gocyclo
+          go install github.com/golang/lint/golint
+          go install honnef.co/go/tools/cmd/megacheck
+          go install github.com/fzipp/gocyclo
 
       - name: Run tests
         run: go test -v -race ./...
