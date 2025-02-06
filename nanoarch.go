@@ -15,7 +15,7 @@ import (
 
 	"golang.org/x/mobile/exp/audio/al"
 
-	"github.com/go-gl/gl/v4.1-core/gl"
+	"github.com/go-gl/gl/v4.6-compatibility/gl"
 	"github.com/go-gl/glfw/v3.3/glfw"
 )
 
