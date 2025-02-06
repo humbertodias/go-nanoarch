@@ -20,12 +20,12 @@ On OSX you can execute the following command and follow the instructions about e
 
 On Debian or Ubuntu:
 
-    sudo apt-get install libglfw3-dev libopenal-dev xorg-dev
+    sudo apt install libglfw3-dev libopenal-dev xorg-dev
 
 ## Building
 
-    go-get github.com/kivutar/go-nanoarch
-    go-build github.com/kivutar/go-nanoarch
+    go install github.com/kivutar/go-nanoarch
+    go build github.com/kivutar/go-nanoarch
 
 ## Running
 
