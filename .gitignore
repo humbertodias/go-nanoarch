@@ -1,2 +1,5 @@
 # Compiled binaries
 /go-nanoarch
+
+go.mod
+go.sum

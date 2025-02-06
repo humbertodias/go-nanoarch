@@ -24,7 +24,8 @@ On Debian or Ubuntu:
 
 ## Building
 
-    go install github.com/kivutar/go-nanoarch
+    go mod init go-nanoarch
+    go get github.com/kivutar/go-nanoarch
     go build github.com/kivutar/go-nanoarch
 
 ## Running
