@@ -35,8 +35,6 @@ jobs:
       - name: Install dependencies (macOS)
         if: matrix.os == 'macos-latest'
         run: |
-          brew update
-          brew upgrade
           brew install glfw openal-soft
 
       - name: Install Go tools
