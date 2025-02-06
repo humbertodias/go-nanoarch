@@ -1,0 +1,62 @@
+name: Go CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        go-version: [1.23.5]
+    
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: ${{ matrix.go-version }}
+        
+      - name: Install dependencies (Linux)
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          sudo add-apt-repository ppa:keithw/glfw3 -y
+          sudo apt-get update -q
+          sudo apt-get install libglfw3-dev libopenal-dev xorg-dev -y
+
+      - name: Install dependencies (macOS)
+        if: matrix.os == 'macos-latest'
+        run: |
+          brew update
+          brew install glfw openal-soft
+
+      - name: Install Go tools
+        run: |
+          go get github.com/golang/lint/golint
+          go get honnef.co/go/tools/cmd/megacheck
+          go get github.com/fzipp/gocyclo
+
+      - name: Run tests
+        run: go test -v -race ./...
+
+      - name: Run go vet
+        run: go vet ./...
+
+      - name: Run megacheck
+        run: megacheck ./...
+
+      - name: Run gocyclo
+        run: |
+          GO_FILES=$(find . -iname '*.go' -type f | grep -v /vendor/)
+          gocyclo -over 19 $GO_FILES
+
+      - name: Run golint
+        run: golint -set_exit_status $(go list ./...)
